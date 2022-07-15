@@ -1,2 +1,3 @@
-# basic-docker-setup
-Simple Docker setup which sets up a PHP hello world site and test MySQL database.
+# Docker - Hello World
+
+Simple Docker setup which sets up an apache reverse proxy and simple hello world example
