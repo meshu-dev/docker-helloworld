@@ -5,31 +5,19 @@ services:
     image: jwilder/nginx-proxy
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - 81:80
+      - 446:443
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - dev-network
-  mysql:
-    image: mysql:5.7
+  helloworld:
+    build: ./services/helloworld/.
     restart: always
     environment:
-      VIRTUAL_HOST: mysql.docker
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3306:3306
+      VIRTUAL_HOST: helloworld.docker
     volumes:
-      - ./mysql-dumps:/docker-entrypoint-initdb.d
-    networks:
-      - dev-network
-  app:
-    build: ./app
-    restart: always
-    environment:
-      VIRTUAL_HOST: app.docker
-    volumes:
-      - ./app/public:/var/www/html/app/public
+      - ./services/helloworld/src:/var/www/html/helloworld/public
     networks:
       - dev-network
 
